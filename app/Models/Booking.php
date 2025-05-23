@@ -6,21 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Activity extends Model
+class Booking extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'title',
-        'description',
-        'start_date',
-        'end_date',
-        'price_per_person',
-        'popularity'
+        'activity_id',
+        'people',
+        'booking_price',
+        'booking_date',
+        'activity_date',
     ];
 
-    public function bookings()
+    public function activity()
     {
-        return $this->hasMany(Booking::class);
+        return $this->belongsTo(Activity::class);
     }
 }

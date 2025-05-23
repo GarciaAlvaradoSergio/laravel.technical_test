@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Activity;
+use App\Models\Booking;
 use App\Models\User;
 use Database\Factories\ActivityFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,8 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
+        Activity::factory(5)->create()->each(function ($activity){
+            Booking::factory(10)->create(['activity_id' => $activity->id]);
+        });
+        /* $this->call([
             ActivitySeeder::class,
-        ]);
+        ]); */
     }
 }
