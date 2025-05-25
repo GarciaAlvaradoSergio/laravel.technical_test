@@ -19,8 +19,40 @@ class Activity extends Model
         'popularity'
     ];
 
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+        'price_per_person' => 'decimal:2'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function recommendedActivities()
+    {
+        return $this->belongsToMany(
+            Activity::class,
+            'activity_recommendations',
+            'activity_id',
+            'recommended_id'
+        );
+    }
+
+    public function recommendedByActivities()
+    {
+        return $this->belongsToMany(
+            Activity::class,
+            'activity_recommendations',
+            'recommended_id',
+            'activity_id'
+        );
     }
 }

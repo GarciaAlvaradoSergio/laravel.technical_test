@@ -18,6 +18,12 @@ class Booking extends Model
         'activity_date',
     ];
 
+    protected $casts = [
+        'booking_date' => 'datetime',
+        'activity_date' => 'date',
+        'booking_price' => 'decimal:2'
+    ];
+    
     public function activity()
     {
         return $this->belongsTo(Activity::class);
