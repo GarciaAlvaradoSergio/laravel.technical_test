@@ -16,7 +16,8 @@ class Activity extends Model
         'start_date',
         'end_date',
         'price_per_person',
-        'popularity'
+        'popularity',
+        'image_path'
     ];
 
     protected $casts = [
